@@ -22,5 +22,20 @@ monolog:
 assetic:
     use_controller: true
 
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: zfmeetup
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: ed3ba2f0779fa679ea1f21f9837ba893c181ba05
+    database_path: null
+
 #swiftmailer:
 #    delivery_address: me@example.com
