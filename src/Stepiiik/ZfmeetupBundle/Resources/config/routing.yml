@@ -28,3 +28,11 @@ album_delete:
     pattern:  /album/{id}/delete
     defaults: { _controller: "StepiiikZfmeetupBundle:Album:delete" }
     requirements: { _method: post }
+
+login:
+    pattern:   /login
+    defaults:  { _controller: StepiiikZfmeetupBundle:Security:login }
+login_check:
+    pattern:   /login_check
+logout:
+    pattern:   /logout

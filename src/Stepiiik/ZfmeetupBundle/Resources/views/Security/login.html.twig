@@ -1,0 +1,26 @@
+{% extends 'StepiiikZfmeetupBundle::layout.html.twig' %}
+
+{% block content %}
+
+{% if error %}
+	<div class="alert alert-error">
+	    {{ error.message }}
+	</div>
+{% endif %}
+<div class="row">
+	<div class="span4">
+		<form action="{{ path('login_check') }}" method="post">
+		    <label for="username">Email:</label>
+		    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+		    <label for="password">Heslo:</label>
+		    <input type="password" id="password" name="_password" />
+		    <p><button type="submit" class="btn">Přihlásit</button></p>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block head %}
+{% endblock %}
