@@ -1,0 +1,20 @@
+{% extends 'StepiiikZfmeetupBundle::layout.html.twig' %}
+
+{% block content %}
+
+<h1>Nové album</h1>
+
+<p class="record_actions">
+    <a href="{{ path('album') }}">
+        Zpět na seznam...
+    </a>
+</p>
+
+<form action="{{ path('album_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-large"><i class="icon icon-plus"></i> Vytvořit</button>
+    </p>
+</form>
+
+{% endblock %}

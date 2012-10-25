@@ -1,0 +1,35 @@
+{% extends 'StepiiikZfmeetupBundle::layout.html.twig' %}
+
+{% block content %}
+
+<h1>Alba</h1>
+
+<table class="records_list table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('album_edit', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+            <td>{{ entity.artist }}</td>
+            <td>
+                <a href="{{ path('album_edit', { 'id': entity.id }) }}">editovat</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<p>
+    <a href="{{ path('album_new') }}" class="btn btn-large">
+        <i class="icon-plus"></i>
+        Vytvořit nový záznam
+    </a>
+</p>
+
+{% endblock %}

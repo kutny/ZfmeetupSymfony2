@@ -1,3 +1,30 @@
 stepiiik_zfmeetup_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: StepiiikZfmeetupBundle:Default:index }
+
+album:
+    pattern:  /album/
+    defaults: { _controller: "StepiiikZfmeetupBundle:Album:index" }
+
+album_new:
+    pattern:  /album/new
+    defaults: { _controller: "StepiiikZfmeetupBundle:Album:new" }
+
+album_create:
+    pattern:  /album/create
+    defaults: { _controller: "StepiiikZfmeetupBundle:Album:create" }
+    requirements: { _method: post }
+
+album_edit:
+    pattern:  /album/{id}/edit
+    defaults: { _controller: "StepiiikZfmeetupBundle:Album:edit" }
+
+album_update:
+    pattern:  /album/{id}/update
+    defaults: { _controller: "StepiiikZfmeetupBundle:Album:update" }
+    requirements: { _method: post }
+
+album_delete:
+    pattern:  /album/{id}/delete
+    defaults: { _controller: "StepiiikZfmeetupBundle:Album:delete" }
+    requirements: { _method: post }

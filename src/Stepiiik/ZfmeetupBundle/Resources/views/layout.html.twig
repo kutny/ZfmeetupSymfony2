@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+{% endblock %}
+
+{% block body %}
+  {% block head %}
+	<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="#">SfMeetup</a>
+      </div>
+    </div>
+    </div>
+  {% endblock %}
+
+	<div class="container-fluid">
+
+  {% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+    </div>
+  {% endfor %}
+  {% for flashMessage in app.session.flashbag.get('error') %}
+    <div class="alert alert-error">
+        {{ flashMessage }}
+    </div>
+  {% endfor %}
+
+	{% block content %}
+	</div>
+{% endblock %}
+
+{% endblock %}
