@@ -1,0 +1,3 @@
+stepiiik_zfmeetup_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: StepiiikZfmeetupBundle:Default:index }
