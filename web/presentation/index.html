@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Symfony2 pohledem svobodného zendaře</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Já su @Stepiiik</h1>
+					<p>Vergilio, s.r.o</p>
+					<ul>
+						<li>twitter.com/stepiiik</li>
+						<li>github.com/stepiiik</li>
+					</ul>
+				</section>
+			
+
+				<section>
+					<h1>Symfony2</h1>
+					<h3>pohledem svobodného zendaře</h3>
+				</section>
+
+				<section>
+					<h1>Symfony2</h1>
+					<h3>pohledem svobodného zendaře</h3>
+					<p>(a Symfony n00ba)</p>
+				</section>
+
+				<section>
+					<h1>Devstack</h1>
+					<ul>
+						<li>Debug toolbar (sql, maily, profiler...)</li>
+						<li>App/console</li>
+						<li>Laděnčina sestra</li>
+						<li>A všecko to funguje...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Demo</h2>
+				</section>
+
+				<section>
+					<h1>Bundles je víc sexy nez modules!</h1>
+					<ul>
+						<li>Vsechno je bundle (i symfony)</li>
+						<li>Composer</li>
+						<li><a href="http://knpbundles.com">knpbundles.com</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Controller</h1>
+					<ul>
+						<li>Žádný velký překvapení</li>
+						<li>Je to fakt rychlý, což je dobře :)</li>
+						<li>Nemusí nic dědit</li>
+						<li>Get paramemetry jako parametry funkce</li>
+						<li>Vrací <code>new Response</code></li>
+					</ul>
+
+					<pre><code contenteditable>
+return $this->render('StepiiikZfmeetupBundle:Album:new.html.twig', array(
+    'entity' => $entity,
+    'form'   => $form->createView(),
+));
+	        		</code></pre>
+					
+				</section>
+
+				<section>
+					<h2>Demo</h2>
+				</section>
+
+				<section>
+					<h1>Routy</h1>
+					<pre><code contenteditable>
+album_edit:
+    pattern:  /album/{id}/edit
+    defaults: { _controller: "StepiiikZfmeetupBundle:Album:edit" }
+					</code></pre>
+					<ul>
+						<li>Nic až tak překvapivého</li>
+						<li>Routy podle http metody</li>
+						<li>Součást bundle</li>
+						<li>Routy i v javascriptu</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>View - Twig</h1>
+					<ul>
+						<li>tede alespoň defaultně</li>
+						<li><code>{{ name }}</code> a <code>{% if %}</code></li>
+						<li>Není to PHP, takže to umí i něco navíc -></li>
+						<li>Escapuje to samo - i když ne tak jak Latte</li>
+						<li>Nemá layout :o</li>
+					</ul>
+				</section>
+
+				<section>
+					<pre><code contenteditable>
+{% for entity in entities %}
+    ...
+{% else %}
+    ...
+{% endfor %}
+					</code></pre>
+				</section>
+
+				<section>
+					Šablona
+					<pre><code contenteditable>
+{% extends 'AcmeDemoBundle::layout.html.twig' %}
+{% block content %}
+{% endblock %}
+					</code></pre>
+
+					Layout
+					<pre><code contenteditable>
+nejake html
+{% block content %}
+default
+{% endblock %}
+nejake html
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Model</h1>
+					<ul>
+						<li>Doctine (nebo Propel)</li>
+						<li>+ Entity jsou úplně holé objekty</li>
+						<li>+ Celé se to scaffolduje</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Form</h1>
+					<ul>
+						<li>Nemá dekorátory a Zend_File :)</li>
+						<li>Nemá validatory … chvilku počkej</li>
+						<li>CSRF</li>
+						<li>HTML5 typy</li>
+						<li>{{ form_row() }} a {{ form_rest() }}</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Demo</h2>
+				</section>
+
+				<section>
+					<h1>Security</h1>
+					<ul>
+						<li>Authentication &amp; authorization</li>
+						<li>YML a to je jako všecko, jo?</li>
+						<li>Hashování hesla -></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Hashování hesla</h2>
+					<pre><code contenteditable>
+encoders:
+    Stepiiik\ZfmeetupBundle\Entity\Usere:
+        algorithm: sha1
+        iterations: 1
+        encode_as_base64: false
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Demo</h2>
+				</section>
+
+				<section>
+					<h1>Validation</h1>
+					<ul>
+						<li>Standard JSR303 Bean Validation specification -></li>
+						<li>Pravidla jsou jenom jedny!</li>
+						<li>Spousta přednastavených (Url, UniqueEntity) + getters</li>
+					</ul>
+				</section>
+
+				<section>
+					<pre><code contenteditable>
+Stepiiik\ZfmeetupBundle\Entity\Album:
+    properties:
+        title:
+            - NotBlank: ~
+			        </code></pre>
+				</section>
+
+				<section>
+					<pre><code contenteditable>
+Stepiiik\ZfmeetupBundle\Entity\User:
+    getters:
+        passwordLegal:
+            - "True": { message: "The password cannot match your first name" }
+            		</code></pre>
+
+            		<pre><code contenteditable>
+public function isPasswordLegal()
+{
+    return ($this->firstName != $this->password);
+}
+			        </code></pre>
+				</section>
+
+				<section>
+					<h1>Misc...</h1>
+					<ul>
+						<li>Testing</li>
+						<li>Service Container</li>
+						<li>HTTP Cache</li>
+						<li>...</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: false,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+	</body>
+</html>
