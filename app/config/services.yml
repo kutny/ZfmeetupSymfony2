@@ -1,1 +1,11 @@
 services:
+
+  controller.album_controller:
+    class: Stepiiik\ZfmeetupBundle\Controller\AlbumController
+    arguments: [@doctrine.orm.default_entity_manager]
+
+  controller.default_controller:
+    class: Stepiiik\ZfmeetupBundle\Controller\DefaultController
+
+  controller.security_controller:
+      class: Stepiiik\ZfmeetupBundle\Controller\SecurityController

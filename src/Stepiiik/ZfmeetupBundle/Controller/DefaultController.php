@@ -4,9 +4,11 @@ namespace Stepiiik\ZfmeetupBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+/**
+ * @Route(service = "controller.default_controller")
+ */
+class DefaultController
 {
 	/**
      * @Route("/hello/{name}", name="route.stepiiik_zfmeetup_homepage")

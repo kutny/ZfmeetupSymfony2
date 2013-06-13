@@ -2,25 +2,46 @@
 
 namespace Stepiiik\ZfmeetupBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stepiiik\ZfmeetupBundle\Entity\Album;
 use Stepiiik\ZfmeetupBundle\Type\AlbumType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\TwigBundle\TwigEngine;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Router;
 
-class AlbumController extends Controller
+/**
+ * @Route(service = "controller.album_controller")
+ */
+class AlbumController
 {
+    private $entityManager;
+    private $formFactory;
+    private $session;
+    private $router;
+    private $twig;
+
+    public function __construct(EntityManager $entityManager, FormFactory $formFactory, Session $session, Router $router, TwigEngine $twig) {
+        $this->entityManager = $entityManager;
+        $this->formFactory = $formFactory;
+        $this->session = $session;
+        $this->router = $router;
+        $this->twig = $twig;
+    }
+
 	/**
      * @Route("/album/", name="route.album")
      * @Template()
      */
     public function albumListAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('StepiiikZfmeetupBundle:Album')->findAll();
+        $entities = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->findAll();
 
         return array(
             'entities' => $entities,
@@ -34,7 +55,7 @@ class AlbumController extends Controller
     public function newAction()
     {
         $entity = new Album();
-        $form   = $this->createForm(new AlbumType(), $entity);
+        $form   = $this->formFactory->create(new AlbumType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -49,20 +70,19 @@ class AlbumController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new Album();
-        $form = $this->createForm(new AlbumType(), $entity);
+        $form = $this->formFactory->create(new AlbumType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
 
-            $this->get('session')->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
+            $this->session->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
 
-            return $this->redirect($this->generateUrl('route.album'));
+            return new RedirectResponse($this->router->generate('route.album'));
         }
 
-        return $this->render('StepiiikZfmeetupBundle:Album:new.html.twig', array(
+        return $this->twig->renderResponse('StepiiikZfmeetupBundle:Album:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -74,15 +94,13 @@ class AlbumController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
+        $entity = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Album entity.');
+            throw new NotFoundHttpException('Unable to find Album entity.');
         }
 
-        $editForm = $this->createForm(new AlbumType(), $entity);
+        $editForm = $this->formFactory->create(new AlbumType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -99,25 +117,23 @@ class AlbumController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
+        $entity = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Album entity.');
+            throw new NotFoundHttpException('Unable to find Album entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new AlbumType(), $entity);
+        $editForm = $this->formFactory->create(new AlbumType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
 
-            $this->get('session')->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
+            $this->session->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
 
-            return $this->redirect($this->generateUrl('route.album_edit', array('id' => $id)));
+            return new RedirectResponse($this->router->generate('route.album_edit', array('id' => $id)));
         }
 
         return array(
@@ -138,27 +154,25 @@ class AlbumController extends Controller
         $form->bind($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
+            $entity = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Album entity.');
+                throw new NotFoundHttpException('Unable to find Album entity.');
             }
 
-            $em->remove($entity);
-            $em->flush();
+            $this->entityManager->remove($entity);
+            $this->entityManager->flush();
 
-            $this->get('session')->getFlashBag()->add('success', 'Záznam by úspěně smazán!');
+            $this->session->getFlashBag()->add('success', 'Záznam by úspěně smazán!');
         }
 
-        return $this->redirect($this->generateUrl('route.album'));
+        return new RedirectResponse($this->router->generate('route.album'));
     }
 
     private function createDeleteForm($id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        return $this->formFactory->createBuilder()
+            ->add('id', 'hidden', array('data' => $id))
+            ->getForm();
     }
 }
