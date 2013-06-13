@@ -2,11 +2,11 @@
 
 namespace Stepiiik\ZfmeetupBundle\Controller;
 
-use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stepiiik\ZfmeetupBundle\Entity\Album;
+use Stepiiik\ZfmeetupBundle\Repository\AlbumRepository;
 use Stepiiik\ZfmeetupBundle\Type\AlbumType;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,13 +20,13 @@ use Symfony\Component\Routing\Router;
  */
 class AlbumController
 {
-    private $entityManager;
+    private $albumRepository;
     private $formFactory;
     private $session;
     private $router;
 
-    public function __construct(EntityManager $entityManager, FormFactory $formFactory, Session $session, Router $router) {
-        $this->entityManager = $entityManager;
+    public function __construct(AlbumRepository $albumRepository, FormFactory $formFactory, Session $session, Router $router) {
+        $this->albumRepository = $albumRepository;
         $this->formFactory = $formFactory;
         $this->session = $session;
         $this->router = $router;
@@ -38,7 +38,7 @@ class AlbumController
      */
     public function albumListAction()
     {
-        $entities = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->findAll();
+        $entities = $this->albumRepository->findAll();
 
         return array(
             'entities' => $entities,
@@ -73,8 +73,7 @@ class AlbumController
         $form->bind($request);
 
         if ($form->isValid()) {
-            $this->entityManager->persist($entity);
-            $this->entityManager->flush();
+            $this->albumRepository->save($entity);
 
             $this->session->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
 
@@ -94,7 +93,7 @@ class AlbumController
      */
     public function editAction($id)
     {
-        $entity = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
+        $entity = $this->albumRepository->find($id);
 
         if (!$entity) {
             throw new NotFoundHttpException('Unable to find Album entity.');
@@ -117,7 +116,7 @@ class AlbumController
      */
     public function updateAction(Request $request, $id)
     {
-        $entity = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
+        $entity = $this->albumRepository->find($id);
 
         if (!$entity) {
             throw new NotFoundHttpException('Unable to find Album entity.');
@@ -128,8 +127,7 @@ class AlbumController
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $this->entityManager->persist($entity);
-            $this->entityManager->flush();
+            $this->albumRepository->save($entity);
 
             $this->session->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
 
@@ -154,14 +152,13 @@ class AlbumController
         $form->bind($request);
 
         if ($form->isValid()) {
-            $entity = $this->entityManager->getRepository('StepiiikZfmeetupBundle:Album')->find($id);
+            $entity = $this->albumRepository->find($id);
 
             if (!$entity) {
                 throw new NotFoundHttpException('Unable to find Album entity.');
             }
 
-            $this->entityManager->remove($entity);
-            $this->entityManager->flush();
+            $this->albumRepository->remove($entity);
 
             $this->session->getFlashBag()->add('success', 'Záznam by úspěně smazán!');
         }

@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Album
 {
+    const ENTITY_NAME = 'StepiiikZfmeetupBundle:Album';
+
     /**
      * @var string $artist
      */
