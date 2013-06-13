@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Stepiiik\ZfmeetupBundle\Entity\Album
+ * @ORM\Entity
  */
 class Album
 {
@@ -15,6 +15,7 @@ class Album
     /**
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=10)
+     * @ORM\Column(type="string", length=10, nullable=false)
      * @var string $artist
      */
     private $artist;
@@ -22,11 +23,15 @@ class Album
     /**
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=10)
+     * @ORM\Column(type="string", length=10, nullable=false)
      * @var string $title
      */
     private $title;
 
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      * @var integer $id
      */
     private $id;
