@@ -16,7 +16,7 @@ class AlbumController extends Controller
      * @Route("/album/", name="album")
      * @Template()
      */
-    public function indexAction()
+    public function albumListAction()
     {
         $em = $this->getDoctrine()->getManager();
 

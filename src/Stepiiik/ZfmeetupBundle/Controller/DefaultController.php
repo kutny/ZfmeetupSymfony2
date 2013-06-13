@@ -12,7 +12,7 @@ class DefaultController extends Controller
      * @Route("/hello/{name}", name="stepiiik_zfmeetup_homepage")
 	 * @Template()
 	 */
-    public function indexAction($name)
+    public function helloAction($name)
     {
         return array('name' => $name);
     }
