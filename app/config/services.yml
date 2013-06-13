@@ -12,3 +12,6 @@ services:
   repository.album_repository:
     class: Stepiiik\ZfmeetupBundle\Repository\AlbumRepository
     arguments: [@doctrine.orm.default_entity_manager]
+
+  type.album_type:
+    class: Stepiiik\ZfmeetupBundle\Type\AlbumType

@@ -24,12 +24,14 @@ class AlbumController
     private $formFactory;
     private $session;
     private $router;
+    private $albumType;
 
-    public function __construct(AlbumRepository $albumRepository, FormFactory $formFactory, Session $session, Router $router) {
+    public function __construct(AlbumRepository $albumRepository, FormFactory $formFactory, Session $session, Router $router, AlbumType $albumType) {
         $this->albumRepository = $albumRepository;
         $this->formFactory = $formFactory;
         $this->session = $session;
         $this->router = $router;
+        $this->albumType = $albumType;
     }
 
 	/**
@@ -53,7 +55,7 @@ class AlbumController
     public function newAction()
     {
         $entity = new Album();
-        $form   = $this->formFactory->create(new AlbumType(), $entity);
+        $form   = $this->formFactory->create($this->albumType, $entity);
 
         return array(
             'entity' => $entity,
@@ -69,7 +71,7 @@ class AlbumController
     public function createAction(Request $request)
     {
         $entity  = new Album();
-        $form = $this->formFactory->create(new AlbumType(), $entity);
+        $form = $this->formFactory->create($this->albumType, $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -99,7 +101,7 @@ class AlbumController
             throw new NotFoundHttpException('Unable to find Album entity.');
         }
 
-        $editForm = $this->formFactory->create(new AlbumType(), $entity);
+        $editForm = $this->formFactory->create($this->albumType, $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -123,7 +125,7 @@ class AlbumController
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->formFactory->create(new AlbumType(), $entity);
+        $editForm = $this->formFactory->create($this->albumType, $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
