@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
 	/**
-     * @Route("/hello/{name}", name="stepiiik_zfmeetup_homepage")
+     * @Route("/hello/{name}", name="route.stepiiik_zfmeetup_homepage")
 	 * @Template()
 	 */
     public function helloAction($name)

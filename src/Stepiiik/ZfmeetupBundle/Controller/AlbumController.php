@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AlbumController extends Controller
 {
 	/**
-     * @Route("/album/", name="album")
+     * @Route("/album/", name="route.album")
      * @Template()
      */
     public function albumListAction()
@@ -28,7 +28,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * @Route("/album/new", name="album_new")
+     * @Route("/album/new", name="route.album_new")
      * @Template()
      */
     public function newAction()
@@ -43,7 +43,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * @Route("/album/create", name="album_create")
+     * @Route("/album/create", name="route.album_create")
      * @Method("POST")
      */
     public function createAction(Request $request)
@@ -59,7 +59,7 @@ class AlbumController extends Controller
 
             $this->get('session')->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
 
-            return $this->redirect($this->generateUrl('album'));
+            return $this->redirect($this->generateUrl('route.album'));
         }
 
         return $this->render('StepiiikZfmeetupBundle:Album:new.html.twig', array(
@@ -69,7 +69,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * @Route("/album/{id}/edit", name="album_edit")
+     * @Route("/album/{id}/edit", name="route.album_edit")
      * @Template()
      */
     public function editAction($id)
@@ -93,7 +93,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * @Route("/album/{id}/update", name="album_update")
+     * @Route("/album/{id}/update", name="route.album_update")
      * @Method("POST")
      * @Template()
      */
@@ -117,7 +117,7 @@ class AlbumController extends Controller
 
             $this->get('session')->getFlashBag()->add('success', 'Záznam by úspěně upraven!');
 
-            return $this->redirect($this->generateUrl('album_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('route.album_edit', array('id' => $id)));
         }
 
         return array(
@@ -128,7 +128,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * @Route("/album/{id}/delete", name="album_delete")
+     * @Route("/album/{id}/delete", name="route.album_delete")
      * @Method("POST")
      * @Template()
      */
@@ -151,7 +151,7 @@ class AlbumController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'Záznam by úspěně smazán!');
         }
 
-        return $this->redirect($this->generateUrl('album'));
+        return $this->redirect($this->generateUrl('route.album'));
     }
 
     private function createDeleteForm($id)

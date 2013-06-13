@@ -9,7 +9,7 @@
 {% endif %}
 <div class="row">
 	<div class="span4">
-		<form action="{{ path('login_check') }}" method="post">
+		<form action="{{ path('route.login_check') }}" method="post">
 		    <label for="username">Email:</label>
 		    <input type="text" id="username" name="_username" value="{{ last_username }}" />
 		    <label for="password">Heslo:</label>

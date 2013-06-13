@@ -5,12 +5,12 @@
 <h1>Nové album</h1>
 
 <p class="record_actions">
-    <a href="{{ path('album') }}">
+    <a href="{{ path('route.album') }}">
         Zpět na seznam...
     </a>
 </p>
 
-<form action="{{ path('album_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('route.album_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
         <button type="submit" class="btn btn-large"><i class="icon icon-plus"></i> Vytvořit</button>

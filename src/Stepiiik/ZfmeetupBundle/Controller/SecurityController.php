@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 class SecurityController extends Controller
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="route.login")
      */
     public function loginAction()
     {
