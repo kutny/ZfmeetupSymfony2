@@ -47,6 +47,7 @@ class AlbumController
 
     /**
      * @Route("/album/new", name="route.album_new")
+     * @Method("GET")
      * @Template()
      */
     public function newAction()
@@ -61,7 +62,7 @@ class AlbumController
     }
 
     /**
-     * @Route("/album/create", name="route.album_create")
+     * @Route("/album/new")
      * @Method("POST")
      * @Template("StepiiikZfmeetupBundle:Album:new.html.twig")
      */
@@ -88,6 +89,7 @@ class AlbumController
 
     /**
      * @Route("/album/{id}/edit", name="route.album_edit")
+     * @Method("GET")
      * @Template()
      */
     public function editAction($id)
@@ -109,9 +111,9 @@ class AlbumController
     }
 
     /**
-     * @Route("/album/{id}/update", name="route.album_update")
+     * @Route("/album/{id}/edit")
      * @Method("POST")
-     * @Template()
+     * @Template("StepiiikZfmeetupBundle:Album:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
