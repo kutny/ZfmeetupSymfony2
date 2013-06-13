@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "fa66f9cd7ee19f0ec84d57fa094f2048",
+    "hash": "586fd03945c74cb218a1ce5408f93579",
     "packages": [
         {
             "name": "doctrine/common",
@@ -445,6 +445,94 @@
                 "minification"
             ],
             "time": "2013-06-01 22:13:43"
+        },
+        {
+            "name": "kutny/autowiring-bundle",
+            "version": "dev-master",
+            "target-dir": "Kutny/AutowiringBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kutny/autowiring-bundle.git",
+                "reference": "4927ce05e08dfc04203159460f52c89fd34121a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kutny/autowiring-bundle/zipball/4927ce05e08dfc04203159460f52c89fd34121a6",
+                "reference": "4927ce05e08dfc04203159460f52c89fd34121a6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Kutny\\AutowiringBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jiri Koutny",
+                    "email": "jirkakoutny@gmail.com"
+                }
+            ],
+            "description": "A simple library that provides autowiring for the Symfony Dependency Injection (DI) container.",
+            "homepage": "https://github.com/kutny/autowiring-bundle",
+            "keywords": [
+                "Autowiring",
+                "Symfony Bundle",
+                "dependency injection",
+                "di"
+            ],
+            "time": "2013-06-10 12:50:21"
+        },
+        {
+            "name": "kutny/tracy-bundle",
+            "version": "0.1",
+            "target-dir": "Kutny/TracyBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kutny/tracy-bundle.git",
+                "reference": "0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kutny/tracy-bundle/zipball/0.1",
+                "reference": "0.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "tracy/tracy": "dev-master"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Kutny\\TracyBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jiri Koutny",
+                    "email": "jirkakoutny@gmail.com"
+                }
+            ],
+            "description": "Nette Tracy debugger for Symfony",
+            "homepage": "https://github.com/kutny/tracy-bundle",
+            "keywords": [
+                "debug",
+                "debugging",
+                "nette"
+            ],
+            "time": "2013-06-10 12:51:07"
         },
         {
             "name": "monolog/monolog",
@@ -1069,6 +1157,57 @@
             "time": "2013-06-11 11:46:38"
         },
         {
+            "name": "tracy/tracy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/tracy.git",
+                "reference": "b2ab4b8e5dbf71dda310f3473b3eb1e8f8bf6412"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/b2ab4b8e5dbf71dda310f3473b3eb1e8f8bf6412",
+                "reference": "b2ab4b8e5dbf71dda310f3473b3eb1e8f8bf6412",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "nette/tester": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/Tracy"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "http://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "http://nette.org/contributors"
+                }
+            ],
+            "description": "Debugger for PHP",
+            "homepage": "http://tracy.nette.org",
+            "keywords": [
+                "debug",
+                "debugger",
+                "nette"
+            ],
+            "time": "2013-05-13 19:33:28"
+        },
+        {
             "name": "twig/extensions",
             "version": "v1.0.0",
             "source": {
@@ -1172,9 +1311,10 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "kutny/autowiring-bundle": 20,
+        "tracy/tracy": 20
+    },
     "platform": {
         "php": ">=5.3.3"
     },

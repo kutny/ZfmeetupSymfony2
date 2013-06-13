@@ -22,6 +22,10 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 require_once __DIR__.'/../app/AppKernel.php';
 
+\Tracy\Debugger::$bar = false;
+\Tracy\Debugger::$strictMode = true;
+\Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT);
+
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
 $request = Request::createFromGlobals();
