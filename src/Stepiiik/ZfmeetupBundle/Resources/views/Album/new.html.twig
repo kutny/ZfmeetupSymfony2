@@ -10,7 +10,7 @@
     </a>
 </p>
 
-<form action="{{ path('route.album_new') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('route.album_new') }}" method="post" {{ form_enctype(form) }} novalidate>
     {{ form_widget(form) }}
     <p>
         <button type="submit" class="btn btn-large"><i class="icon icon-plus"></i> Vytvořit</button>

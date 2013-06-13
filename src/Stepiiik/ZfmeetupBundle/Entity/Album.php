@@ -3,6 +3,7 @@
 namespace Stepiiik\ZfmeetupBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Stepiiik\ZfmeetupBundle\Entity\Album
@@ -12,11 +13,15 @@ class Album
     const ENTITY_NAME = 'StepiiikZfmeetupBundle:Album';
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2, max=10)
      * @var string $artist
      */
     private $artist;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2, max=10)
      * @var string $title
      */
     private $title;
@@ -25,7 +30,6 @@ class Album
      * @var integer $id
      */
     private $id;
-
 
     /**
      * Set artist

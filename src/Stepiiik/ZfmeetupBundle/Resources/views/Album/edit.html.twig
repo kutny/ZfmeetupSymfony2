@@ -10,7 +10,7 @@
     </a>
 </p>
 
-<form action="{{ path('route.album_edit', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form action="{{ path('route.album_edit', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} novalidate>
     {{ form_widget(edit_form) }}
     <p>
         <button type="submit" class="btn btn-large">Editovat</button>
