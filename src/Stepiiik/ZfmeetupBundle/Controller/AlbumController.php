@@ -5,6 +5,8 @@ namespace Stepiiik\ZfmeetupBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use Stepiiik\ZfmeetupBundle\Type\AlbumType;
 use Stepiiik\ZfmeetupBundle\Entity\Album;
@@ -13,8 +15,7 @@ use Stepiiik\ZfmeetupBundle\Entity\Album;
 class AlbumController extends Controller
 {
 	/**
-     * Lists all
-     *
+     * @Route("/album/", name="album")
      * @Template()
      */
     public function indexAction()
@@ -29,8 +30,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * Displays a form to create
-     *
+     * @Route("/album/new", name="album_new")
      * @Template()
      */
     public function newAction()
@@ -45,8 +45,8 @@ class AlbumController extends Controller
     }
 
     /**
-     * Creates
-     *
+     * @Route("/album/create", name="album_create")
+     * @Method("POST")
      */
     public function createAction(Request $request)
     {
@@ -71,8 +71,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * Displays a form to edit
-     *
+     * @Route("/album/{id}/edit", name="album_edit")
      * @Template()
      */
     public function editAction($id)
@@ -96,8 +95,8 @@ class AlbumController extends Controller
     }
 
     /**
-     * Edits
-     *
+     * @Route("/album/{id}/update", name="album_update")
+     * @Method("POST")
      * @Template()
      */
     public function updateAction(Request $request, $id)
@@ -131,8 +130,8 @@ class AlbumController extends Controller
     }
 
     /**
-     * Deletes entity.
-     *
+     * @Route("/album/{id}/delete", name="album_delete")
+     * @Method("POST")
      * @Template()
      */
     public function deleteAction(Request $request, $id)
