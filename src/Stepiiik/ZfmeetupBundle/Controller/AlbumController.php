@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stepiiik\ZfmeetupBundle\Entity\Album;
 use Stepiiik\ZfmeetupBundle\Type\AlbumType;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,14 +24,12 @@ class AlbumController
     private $formFactory;
     private $session;
     private $router;
-    private $twig;
 
-    public function __construct(EntityManager $entityManager, FormFactory $formFactory, Session $session, Router $router, TwigEngine $twig) {
+    public function __construct(EntityManager $entityManager, FormFactory $formFactory, Session $session, Router $router) {
         $this->entityManager = $entityManager;
         $this->formFactory = $formFactory;
         $this->session = $session;
         $this->router = $router;
-        $this->twig = $twig;
     }
 
 	/**
@@ -66,6 +63,7 @@ class AlbumController
     /**
      * @Route("/album/create", name="route.album_create")
      * @Method("POST")
+     * @Template("StepiiikZfmeetupBundle:Album:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -82,10 +80,10 @@ class AlbumController
             return new RedirectResponse($this->router->generate('route.album'));
         }
 
-        return $this->twig->renderResponse('StepiiikZfmeetupBundle:Album:new.html.twig', array(
+        return array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        ));
+        );
     }
 
     /**

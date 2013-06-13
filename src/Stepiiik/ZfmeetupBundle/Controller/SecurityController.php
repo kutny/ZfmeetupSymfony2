@@ -3,7 +3,7 @@
 namespace Stepiiik\ZfmeetupBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\TwigBundle\TwigEngine;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
@@ -12,14 +12,9 @@ use Symfony\Component\Security\Core\SecurityContext;
  */
 class SecurityController
 {
-    private $twig;
-
-    public function __construct(TwigEngine $twig) {
-        $this->twig = $twig;
-    }
-
     /**
      * @Route("/login", name="route.login")
+     * @Template()
      */
     public function loginAction(Request $request)
     {
@@ -31,10 +26,10 @@ class SecurityController
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR); $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return $this->twig->renderResponse('StepiiikZfmeetupBundle:Security:login.html.twig', array(
+        return array(
             // last username entered by the user
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
-        )); 
+        );
     }
 }
