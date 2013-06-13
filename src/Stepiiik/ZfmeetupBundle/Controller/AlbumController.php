@@ -2,15 +2,13 @@
 
 namespace Stepiiik\ZfmeetupBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Stepiiik\ZfmeetupBundle\Entity\Album;
+use Stepiiik\ZfmeetupBundle\Type\AlbumType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
-use Stepiiik\ZfmeetupBundle\Type\AlbumType;
-use Stepiiik\ZfmeetupBundle\Entity\Album;
-
 
 class AlbumController extends Controller
 {
