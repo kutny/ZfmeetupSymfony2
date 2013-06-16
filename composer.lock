@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "586fd03945c74cb218a1ce5408f93579",
+    "hash": "8b9fb06a5c2ab6b51cdb5b9a258dfdcf",
     "packages": [
         {
             "name": "doctrine/common",
@@ -453,12 +453,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kutny/autowiring-bundle.git",
-                "reference": "4927ce05e08dfc04203159460f52c89fd34121a6"
+                "reference": "7afa68aeb86c045f278cb9155e4e5485f4ab156b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kutny/autowiring-bundle/zipball/4927ce05e08dfc04203159460f52c89fd34121a6",
-                "reference": "4927ce05e08dfc04203159460f52c89fd34121a6",
+                "url": "https://api.github.com/repos/kutny/autowiring-bundle/zipball/7afa68aeb86c045f278cb9155e4e5485f4ab156b",
+                "reference": "7afa68aeb86c045f278cb9155e4e5485f4ab156b",
                 "shasum": ""
             },
             "require": {
@@ -488,7 +488,7 @@
                 "dependency injection",
                 "di"
             ],
-            "time": "2013-06-10 12:50:21"
+            "time": "2013-06-16 13:41:18"
         },
         {
             "name": "kutny/tracy-bundle",
